@@ -5,47 +5,41 @@ namespace Homework3
     class Homework3
     {
 
-        static void InitializeArray(int[] array, int degree)
+        static double[] InitializeArray(int arrayLenght, int degree)
         {
+            double[] array = new double[arrayLenght];
+
             for (int i = 0; i < array.Length; i++)
             {
-                array[i] = i;
-                for (int k = 0; k < (degree - 1); k++)
-                {
-                    array[i] = array[i] * i;
-                }
+               array[i] = i;
+               array[i] = Math.Pow(array[i], degree);
             }
+           
+            return array;
         }
 
-        static float AverValue(int[] array)
+        static double AverValue(double[] array)
         {
-            float aver = 0;
-            float sum = 0;
+            double sum = 0;
 
             for (int i = 0; i < array.Length; i++)
             {
-
                 sum += array[i];
             }
 
-            aver = sum / array.Length;
-            return aver;
-
+            return  sum / array.Length;
         }
         static void Main(string[] args)
         {
-            int[] indexArray = new int[10];
-            InitializeArray(indexArray, 1);
+            
+            double[] indexArray = InitializeArray(10, 1);
+            Console.WriteLine(AverValue(indexArray));
+         
+            indexArray = InitializeArray(10, 2);
             Console.WriteLine(AverValue(indexArray));
 
-
-            int[] squareArray = new int[10];
-            InitializeArray(squareArray, 2);
-            Console.WriteLine(AverValue(squareArray));
-
-            int[] cubeArray = new int[10];
-            InitializeArray(cubeArray, 3);
-            Console.WriteLine(AverValue(cubeArray));
+            indexArray = InitializeArray(10, 3);
+            Console.WriteLine(AverValue(indexArray));
         }
     }
 }
