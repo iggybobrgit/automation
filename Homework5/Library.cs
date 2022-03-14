@@ -1,36 +1,25 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Homework5
 {
     class Library
     {
-         string bookName;
-         int bookPages;
-         string bookID;
-
-
         public Library (string bookname, int bookpages, string bookid)
         {
-            bookName = bookname;
-            bookPages = bookpages;
-            bookID = bookid;
+            BookName = bookname;
+            BookPages = bookpages;
+            BookID = bookid;
         }
-
-        public string GetBookName()
+        public string BookName { get; set; }
+        public int BookPages { get; set; }
+        public string BookID { get; set; }
+      
+        public static void PrintLibrary(Library[] books)
         {
-            return bookName;
-        }
-
-        public int  GetBookPages()
-        {
-            return bookPages;
-        }
-
-        public string GetBookID()
-        {
-            return bookID;
+            foreach (Library book in books)
+            {
+                Console.WriteLine("Book name is {0}, amount of the pages is {1}, unique library id is {2}", book.BookName, book.BookPages, book.BookID);
+            }
         }
     }
 }
