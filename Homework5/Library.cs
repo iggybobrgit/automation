@@ -14,12 +14,9 @@ namespace Homework5
         public int BookPages { get; set; }
         public string BookID { get; set; }
       
-        public static void PrintLibrary(Library[] books)
+        public void PrintBookInfo()
         {
-            foreach (Library book in books)
-            {
-                Console.WriteLine("Book name is {0}, amount of the pages is {1}, unique library id is {2}", book.BookName, book.BookPages, book.BookID);
-            }
+            Console.WriteLine("{0} book with ID - {1} has {2} pages", BookName, BookID, BookPages);
         }
     }
 }
