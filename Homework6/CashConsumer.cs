@@ -2,9 +2,9 @@
 {
     class CashConsumer: Consumer
     {
-        public override string MakePayment()
+        public override void MakePayment()
         {
-            return System.String.Format("Consumer paid by Cash");
+            System.Console.WriteLine("Consumer with real money paid by Cash");
         }
     }
 }

@@ -6,9 +6,9 @@ namespace Homework6
 {
     class CreditCardConsumer : Consumer
     {
-        public override string MakePayment()
+        public override void MakePayment()
         {
-            return System.String.Format("Consumer paid by CreditCard");
+            Console.WriteLine ("Consumer with credit card paid by CreditCard");
         }
     }
 }

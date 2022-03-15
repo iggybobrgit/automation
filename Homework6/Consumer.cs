@@ -2,7 +2,7 @@
 {
     abstract class Consumer
     {
-        public abstract string MakePayment();
+        public abstract void  MakePayment();
     }
  
 }

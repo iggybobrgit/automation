@@ -16,7 +16,7 @@ namespace Homework6
 
             foreach (Consumer item in Customers)
             {
-                Console.WriteLine(item.MakePayment());
+                item.MakePayment();
             }
         }
     }
