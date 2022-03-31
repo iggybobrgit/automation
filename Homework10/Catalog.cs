@@ -8,29 +8,29 @@ namespace Homework10
     class Catalog
     {
         public List<Book> AvailableBooks { get; set; }
-        
         public List<Book> GetBookNames(List<Book> books)
         {
             Console.WriteLine("List of books ordered by book name:");
-            var names = books.OrderBy(x => x.BookName).ToList();
-            return names;
+            var bookNames = books.OrderBy(x => x.BookName).ToList();
+            return bookNames;
         }
-
         public List<Author> GetAuthorsByBirthday(List<Author> authors)
         {
             Console.WriteLine("List of all authors ordered by DOB:");
             var names = authors.OrderBy(x => x.DOB).ToList();
             return names;
         }
-
-        public List<Book> GetCobenLeeBooks(List<Book> books)
+        public List<Book> GetBooksByAuthorPrintedAfter2001(List<Book> books)
         {
-            Console.WriteLine("List of books wrote by Coben Lee after 01/01/2001");
-            var names = books.Where(x => x.Authors.Any(a =>a.FirstName == "Lee" && a.LastName == "Coben")).Where(x => x.PrintDate > new DateTime(2001, 01, 01)).ToList();
+            Console.WriteLine("Enter author's firstname:");
+            string firstName = Console.ReadLine();
+            Console.WriteLine("Enter author's lastname:");
+            string lastName = Console.ReadLine();
+            Console.WriteLine("List of books wrote by {0} {1} after 01/01/2001", firstName, lastName);
+            var names = books.Where(x => x.Authors.Any(a =>a.FirstName == firstName && a.LastName == lastName)).Where(x => x.PrintDate > new DateTime(2001, 01, 01)).ToList();
             return names;
         }
-
-        public List<Author> GetListOfBookWAvailableAuthor(List<Book> books)
+        public List<Author> GetBooksOfAvailableAuthors(List<Book> books)
         {
             Console.WriteLine("List of books wrote by authors from catalog");
             var names = books.SelectMany(x => x.Authors).Distinct().ToList();

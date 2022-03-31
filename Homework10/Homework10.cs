@@ -32,34 +32,31 @@ namespace Homework10
             catalog.AvailableBooks.Add(new Book("Lord of the Rings", new DateTime(2000, 01, 25), 4348, new List<Author>() { authorList[2] }));
 
 
-            var test = catalog.GetBookNames(catalog.AvailableBooks);
-            foreach (var element in test)
+            var bookNames = catalog.GetBookNames(catalog.AvailableBooks);
+            foreach (var element in bookNames)
             {
                 Console.WriteLine($"{element.BookName}");         
             }
 
-            var test1 = catalog.GetAuthorsByBirthday(authorList);
-            foreach (var element in test1)
+            var authorBD = catalog.GetAuthorsByBirthday(authorList);
+            foreach (var element in authorBD)
             {
                 Console.WriteLine($"{element.FirstName} {element.LastName}, DOB - {element.DOB.ToShortDateString()}");
             }
 
+            var availAuthors = catalog.GetBooksOfAvailableAuthors(catalog.AvailableBooks);
 
-            var test2 = catalog.GetCobenLeeBooks(catalog.AvailableBooks);
-
-            foreach (var element in test2)
-            {
-                Console.WriteLine($"{element.BookName} {element.BookID}");
-            }
-
-
-            var test3 = catalog.GetListOfBookWAvailableAuthor(catalog.AvailableBooks);
-
-            foreach (var element in test3)
+            foreach (var element in availAuthors)
             {
                 Console.WriteLine($"{element.FirstName} {element.LastName}, DOB - {element.DOB.ToShortDateString()}");
             }
 
+            var printedBooks = catalog.GetBooksByAuthorPrintedAfter2001(catalog.AvailableBooks);
+
+            foreach (var element in printedBooks)
+            {
+                Console.WriteLine($"{element.BookName}, ID - {element.BookID}");
+            }
         }
     }
  }
