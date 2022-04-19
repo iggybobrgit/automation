@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32126.315
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthHabrPageTests", "AuthHabrPageTests.csproj", "{54FA38DC-8A5E-4835-95B5-5F7077FBAF25}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HabrPageObjectModel", "..\HabrPageObjectModel\HabrPageObjectModel.csproj", "{B3ADE690-88D4-4AAB-9AF3-00375C757A6D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{54FA38DC-8A5E-4835-95B5-5F7077FBAF25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54FA38DC-8A5E-4835-95B5-5F7077FBAF25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54FA38DC-8A5E-4835-95B5-5F7077FBAF25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54FA38DC-8A5E-4835-95B5-5F7077FBAF25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3ADE690-88D4-4AAB-9AF3-00375C757A6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3ADE690-88D4-4AAB-9AF3-00375C757A6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3ADE690-88D4-4AAB-9AF3-00375C757A6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3ADE690-88D4-4AAB-9AF3-00375C757A6D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4E2E9C0-86B3-4A04-BECC-CF7486D1DA1A}
+	EndGlobalSection
+EndGlobal
