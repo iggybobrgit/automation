@@ -31,7 +31,8 @@ namespace Task50_SubTask7
             _webDriver.FindElement(getUserButton).Click();
             var element = _webDriver.FindElement(namePresence);
             wait.Until(ExpectedConditions.TextToBePresentInElement(element, "First Name"));
-            
+            wait.Until(ExpectedConditions.TextToBePresentInElement(element, "Last Name"));
+
         }
 
         [TearDown]
