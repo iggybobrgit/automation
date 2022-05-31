@@ -14,7 +14,7 @@ namespace Task70
         private IWebDriver _webDriver;
 
         private readonly By _enterButton = By.XPath("//div[@class = 'desk-notif-card__login-new-item-title']");
-        private readonly By _userName = By.XPath("//span[contains(text(), 'ggybobr')]");
+        private readonly By _userName = By.XPath("//div[@class='desk-notif-card__domik-user usermenu-link i-bem']");
         private readonly By _settingButton = By.XPath("//a[@class= 'home-link usermenu-link__control home-link_black_yes']");
         private readonly By _exitButton = By.XPath("//a[@data-statlog='mail.login.usermenu.exit']");
         private readonly By _loggedoutSign = By.XPath("//div[contains(text(), 'Войти')]");
@@ -27,7 +27,6 @@ namespace Task70
 
         public AuthorizationPage OpenSignInMenu()
         {
-            Thread.Sleep(50000);
             _webDriver.FindElement(_enterButton).Click();
             return new AuthorizationPage(_webDriver);
         }

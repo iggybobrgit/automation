@@ -11,9 +11,9 @@ namespace Task70
     {
         private IWebDriver _webDriver;
 
-        private readonly By _idField = By.CssSelector("input.Textinput-Control");
+        private readonly By _idField = By.XPath("//input[@id='passp-field-login']");
         private readonly By _confirmButton = By.XPath("//button[@type='submit']");
-        private readonly By _passField = By.CssSelector("input#passp-field-passwd");
+        private readonly By _passField = By.XPath("//input[@id='passp-field-passwd']");
 
         public AuthorizationPage(IWebDriver webdriver)
         {
@@ -23,14 +23,19 @@ namespace Task70
         public AuthorizationPage EnterLogin(string login)
         {
             _webDriver.FindElement(_idField).SendKeys(login);
-            _webDriver.FindElement(_confirmButton).Click();
+            clickConfirmButton();
             return new AuthorizationPage(_webDriver);
+        }
+
+        public void clickConfirmButton()
+        {
+            _webDriver.FindElement(_confirmButton).Click();
         }
 
         public YandexMainPage EnterPassword(string password)
         {
             _webDriver.FindElement(_passField).SendKeys(password);
-            _webDriver.FindElement(_confirmButton).Click();
+            clickConfirmButton();
             return new YandexMainPage(_webDriver);
         }
 
