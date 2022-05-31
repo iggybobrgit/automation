@@ -18,6 +18,7 @@ namespace Task50_subtask_9
         private readonly By nextButtonId = By.Id("example_next");
         private readonly By numberOfEntries = By.Name("example_length");
         List<List<string>> grid = new List<List<string>>();
+        private readonly By numberOfTablePages = By.XPath("//div[@id='example_paginate']/span/a");
 
         private int _Age;
         private int _Salary;
@@ -33,9 +34,17 @@ namespace Task50_subtask_9
 
         public int CustomTableHandle()
         {
-            _wait.Until(ExpectedConditions.ElementIsVisible(nextButtonId));
-            var tableRow = _driver.FindElements(tableRowTr).Select(x => x.FindElements(tableRowTd).Select(x => x)).ToList();
-            grid.AddRange(tableRow.Select(x => x.Select(x => x.Text).ToList()));
+            IWebElement nextButton = _driver.FindElement(nextButtonId);
+            int numberOfPages = _driver.FindElements(numberOfTablePages).Count;
+
+            for (int i = 0; i < numberOfPages; i++)
+            {
+                _wait.Until(ExpectedConditions.ElementIsVisible(nextButtonId));
+                var tableRow = _driver.FindElements(tableRowTr).Select(x => x.FindElements(tableRowTd).Select(x => x)).ToList();
+                grid.AddRange(tableRow.Select(x => x.Select(x => x.Text).ToList()));
+                _driver.FindElement(nextButtonId).Click();
+            }
+
             var result = grid.Select(x => new Grid(x)).Where(x => x.Age > _Age & x.Salary <= _Salary).ToList();
 
             return result.Count;

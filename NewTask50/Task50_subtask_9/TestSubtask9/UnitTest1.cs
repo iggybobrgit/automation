@@ -31,7 +31,13 @@ namespace TestSubtask9
             Table handleTable = new Table(_driver, _wait, 60, 200000);
             handleTable.SetNumberOfEntriesToTen();
             int resultNumber = handleTable.CustomTableHandle();
-            Assert.AreEqual(1, resultNumber);
+            Assert.AreEqual(3, resultNumber);
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _driver.Quit();
         }
     }
 }
