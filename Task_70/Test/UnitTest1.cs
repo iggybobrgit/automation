@@ -23,7 +23,7 @@ namespace YandexLoginTests
 
         }
 
-        [TestCase("iggybobr", "Panasonik99659965")]        
+        [TestCase("iggybobr", "Panasonik99659965")]
         public void YandexMailLogin(string login, string password)
         {
 
@@ -44,7 +44,7 @@ namespace YandexLoginTests
             signinMenu.EnterLogin(login);
             signinMenu.EnterPassword(password);
             mainPage.Logout();
-            Assert.AreEqual("Войти", mainPage.GetLoggedOutSign());                       
+            Assert.AreEqual("Войти", mainPage.GetLoggedOutSign());
 
         }
 
