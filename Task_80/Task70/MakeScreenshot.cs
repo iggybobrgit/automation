@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Task80
 {
-    public static class SS
+    public static class MakeScreenshot
     {
         public static void TakeScreenshot(IWebDriver driver)
         {
@@ -17,6 +17,6 @@ namespace Task80
 
             ((ITakesScreenshot)driver).GetScreenshot().SaveAsFile(@$"{scrPath}/Screenshots/" + @DateTime.Now.ToString("yyyy-MM-dd_HH-mm-fff") + @".png", ScreenshotImageFormat.Png);
         }
-        }
     }
+}
 

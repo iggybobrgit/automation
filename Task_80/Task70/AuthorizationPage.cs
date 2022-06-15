@@ -7,10 +7,8 @@ using OpenQA.Selenium;
 
 namespace Task80
 {
-    public class AuthorizationPage
+    public class AuthorizationPage : BasePage
     {
-        private IWebDriver _webDriver;
-
         private readonly By _idField = By.XPath("//input[@id='passp-field-login']");
         private readonly By _confirmButton = By.XPath("//button[@type='submit']");
         private readonly By _passField = By.XPath("//input[@id='passp-field-passwd']");
@@ -23,11 +21,11 @@ namespace Task80
         public AuthorizationPage EnterLogin(string login)
         {
             _webDriver.FindElement(_idField).SendKeys(login);
-            clickConfirmButton();
+            ClickConfirmButton();
             return new AuthorizationPage(_webDriver);
         }
 
-        public void clickConfirmButton()
+        public void ClickConfirmButton()
         {
             _webDriver.FindElement(_confirmButton).Click();
         }
@@ -35,7 +33,7 @@ namespace Task80
         public YandexMainPage EnterPassword(string password)
         {
             _webDriver.FindElement(_passField).SendKeys(password);
-            clickConfirmButton();
+            ClickConfirmButton();
             return new YandexMainPage(_webDriver);
         }
 
