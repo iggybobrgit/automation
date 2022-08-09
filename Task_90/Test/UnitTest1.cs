@@ -12,6 +12,8 @@ using NUnit.Allure.Core;
 
 namespace YandexLoginTests
 {
+    [AllureNUnit]
+    [TestFixture]
     public class Tests 
     {
        private IWebDriver driver;
