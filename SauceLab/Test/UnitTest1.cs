@@ -21,7 +21,7 @@ namespace YandexLoginTests
         [SetUp]
         public void Setup()
         {
-            BrowserContext.BrowserSetup();            
+            BrowserContext.BrowserSetup(Environments.MacOSChrome);            
         }
        
         [TestCase("iggybobr", "Panasonik99659965")]        
