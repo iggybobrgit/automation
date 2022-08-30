@@ -1,3 +1,4 @@
+using System.Configuration;
 using Allure.Commons;
 using Final.AdditionalMethods;
 using Final.PageObjects;
@@ -6,22 +7,21 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-
-
+using static Final.AdditionalMethods.BaseOptions;
 
 namespace Final
 {
     [AllureNUnit]
     [TestFixture]
 
-    public class Tests : BrowserContext
+    public class Tests : BaseOptions
     {
 
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup()
         {
-            BrowserContext.BrowserSetup(Environments.LocalFireFox);
+            BaseOptions.BrowserSetup(ConfigurationManager.AppSettings["env"]);
         }
 
         [AllureSubSuite("NewUser")]
@@ -45,6 +45,7 @@ namespace Final
 
             homePage.LogIn(user.Email.ToString(), user.Password.ToString());
             Assert.AreEqual($"{user.FirstNamePersonal} {user.LastNamePersonal}", myAccount.userInfo.Text);
+            homePage.LogOut();
         }
 
         [AllureSubSuite("Wishlist")]
@@ -73,6 +74,7 @@ namespace Final
 
             wishlist.NavigateToWishlist();
             Assert.True(wishlist.IsLoaded());
+            homePage.LogOut();
 
         }
 
@@ -105,6 +107,8 @@ namespace Final
             wishlist.NavigateToWishlist();
             wishlist.IsLoaded();
             Assert.IsTrue(wishlist.VerifyProductInWishlist(productName));
+
+            homePage.LogOut();
         }
 
         [AllureSubSuite("Cart")]
@@ -136,19 +140,22 @@ namespace Final
             Assert.AreEqual(3, actualProducts.Count);
             Assert.AreEqual(products, actualProducts);
 
+            homePage.LogOut();
 
         }
 
 
-        [TearDown]
+        [OneTimeTearDown]
         public void TearDown()
         {
+            BrowserExit();
+        }
 
-            if (TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Failed")
-            {
-                AllureLifecycle.Instance.AddAttachment(TestContext.CurrentContext.Test.MethodName + " screenshot" + DateTime.Now + ".png", "image/png", Screenshots.Take(_driver));
-            }
-            BrowserContext.BrowserExit();
+        [TearDown]
+        public void FailedTestAttach()
+        {
+            ScreenshotFail();
+
         }
     }
 }

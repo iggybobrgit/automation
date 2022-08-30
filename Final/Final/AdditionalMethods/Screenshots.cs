@@ -6,16 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
+using Allure.Commons;
+using Final.AdditionalMethods;
 
 namespace Final.AdditionalMethods
 {
     public static class Screenshots
     {
 
+    public static byte[] Take(IWebDriver driver)
+    {
+        return ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
+    }
 
-        public static byte[] Take(IWebDriver driver)
-        {
-            return ((ITakesScreenshot)driver).GetScreenshot().AsByteArray;
-        }
     }
 }

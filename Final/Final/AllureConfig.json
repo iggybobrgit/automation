@@ -1,6 +1,6 @@
 {
   "allure": {
-    "directory": "C:\\Users\\igorbobrov\\source\\repos\\Final\\Final\\Allure-Results",
+    "directory": "..\\..\\..\\Allure-Results",
     "links": [
       "https://github.com/nunit/docs/issues?utf8=✓&q={issue}",
       "https://example.org/{tms}",
