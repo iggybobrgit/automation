@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using OpenQA.Selenium.Firefox;
-using static Final.AdditionalMethods.BaseOptions;
+using static Final.AdditionalMethods.BrowserFactory;
 using OpenQA.Selenium.Remote;
 using Allure.Commons;
 using Final.PageObjects;
@@ -14,7 +14,7 @@ using System.Configuration;
 
 namespace Final.AdditionalMethods
 {
-    public class BaseOptions
+    public class BrowserFactory
     {
         public static IWebDriver _driver;
         private static string _sauceUserName;
@@ -100,16 +100,7 @@ namespace Final.AdditionalMethods
             _driver.Quit();
         }
 
-        public static void ScreenshotFail()
-        {
-            if (TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Failed")
-            {
-                AllureLifecycle.Instance.AddAttachment(
-                    TestContext.CurrentContext.Test.MethodName + " screenshot" + DateTime.Now + ".png", "image/png",
-                    Screenshots.Take(_driver));
-            }
-            
-        }
+       
 
     }
 }

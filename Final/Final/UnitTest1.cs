@@ -7,7 +7,7 @@ using NUnit.Allure.Core;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using static Final.AdditionalMethods.BaseOptions;
+using static Final.AdditionalMethods.BrowserFactory;
 
 namespace Final
 {
@@ -20,7 +20,7 @@ namespace Final
         [OneTimeSetUp]
         public void Setup()
         {
-            BaseOptions.BrowserSetup(ConfigurationManager.AppSettings["env"]);
+            BrowserFactory.BrowserSetup(ConfigurationManager.AppSettings["env"]);
         }
 
         private User _user = new User()
@@ -168,13 +168,13 @@ namespace Final
         [OneTimeTearDown]
         public void TearDown()
         {
-            BaseOptions.BrowserExit();
+            BrowserFactory.BrowserExit();
         }
 
         [TearDown]
         public void FailedTestAttach()
         {
-            BaseOptions.ScreenshotFail();
+            BaseTest.ScreenshotFail();
 
         }
     }
