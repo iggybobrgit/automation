@@ -29,4 +29,15 @@ namespace Final.AdditionalMethods
         TShirts
     }
 
+    public enum Environments
+    {
+        LocalChrome,
+        LocalFireFox,
+        SauceLabMozilla,
+        SauceLabChrome,
+        SelenoidChrome,
+        SelenoidMozilla
+
+    }
+   
 }

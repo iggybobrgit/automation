@@ -16,29 +16,30 @@ namespace Final.AdditionalMethods
 {
     public class BaseOptions
     {
-        protected static IWebDriver _driver;
+        public static IWebDriver _driver;
         private static string _sauceUserName;
         private static string _sauceAccessKey;
         private static Dictionary<string, object> _sauceOptions;
-        public static void BrowserSetup(string env)
+        public static void BrowserSetup(string environment)
         {
 
+            var env = (Environments)Enum.Parse(typeof(Environments), environment, true);
 
             switch (env)
             {
-                case "LocalChrome":
+                case Environments.LocalChrome:
                     _driver = new ChromeDriver();
                     _driver.Manage().Window.Maximize();
                     _driver.Navigate().GoToUrl("http://automationpractice.com/index.php?controller=authentication&back=my-account");
                     break;
 
-                case "LocalFireFox":
+                case Environments.LocalFireFox:
                     _driver = new FirefoxDriver();
                     _driver.Manage().Window.Maximize();
                     _driver.Navigate().GoToUrl("http://automationpractice.com/index.php?controller=authentication&back=my-account");
                     break;
 
-                case "SauceLabMozilla":
+                case Environments.SauceLabMozilla:
                     _sauceUserName = Environment.GetEnvironmentVariable("igorbobrov");
                     _sauceAccessKey = Environment.GetEnvironmentVariable("ed2c19f2-9c04-413a-8de6-74b5b3aa5e40");
                     _sauceOptions = new Dictionary<string, object>
@@ -58,7 +59,7 @@ namespace Final.AdditionalMethods
                     _driver.Navigate().GoToUrl("http://automationpractice.com/index.php?controller=authentication&back=my-account");
                     break;
 
-                case "SauceLabChrome":
+                case Environments.SauceLabChrome:
                     _sauceUserName = Environment.GetEnvironmentVariable("igorbobrov");
                     _sauceAccessKey = Environment.GetEnvironmentVariable("ed2c19f2-9c04-413a-8de6-74b5b3aa5e40");
                     _sauceOptions = new Dictionary<string, object>
@@ -78,13 +79,13 @@ namespace Final.AdditionalMethods
                     _driver.Navigate().GoToUrl("http://automationpractice.com/index.php?controller=authentication&back=my-account");
                     break;
 
-                case "SelenoidChrome":
+                case Environments.SelenoidChrome:
                     var driverOptions = new ChromeOptions();
                     _driver = new RemoteWebDriver(new Uri("http://127.0.0.1:4444/wd/hub"), driverOptions);
                     _driver.Navigate().GoToUrl("http://automationpractice.com/index.php?controller=authentication&back=my-account");
                     break;
 
-                case "SelenoidMozilla":
+                case Environments.SelenoidMozilla:
                     var driverOptions1 = new FirefoxOptions();
                     _driver = new RemoteWebDriver(new Uri("http://127.0.0.1:4444/wd/hub"), driverOptions1);
                     _driver.Navigate().GoToUrl("http://automationpractice.com/index.php?controller=authentication&back=my-account");
@@ -94,12 +95,12 @@ namespace Final.AdditionalMethods
 
         }
 
-        public void BrowserExit()
+        public static void BrowserExit()
         {
             _driver.Quit();
         }
 
-        public void ScreenshotFail()
+        public static void ScreenshotFail()
         {
             if (TestContext.CurrentContext.Result.Outcome.Status.ToString() == "Failed")
             {

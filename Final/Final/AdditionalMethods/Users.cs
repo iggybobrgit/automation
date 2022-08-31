@@ -8,27 +8,7 @@ namespace Final.AdditionalMethods
 {
     public class User
     {
-        private static Random random = new Random();
-        public User()
-        {
-            FirstNamePersonal = Utils.RandomString();
-            LastNamePersonal = Utils.RandomString();
-            Email = $"{Utils.RandomString()}@{Utils.RandomString(16)}.com";
-            Password = Utils.RandomString();
-            DayDOB = "5";
-            MonthDOB = DateOfBirthMonth.February;
-            YearDOB = "1994";
-            FirstNameAddress = FirstNamePersonal;
-            LastNameAddress = LastNamePersonal;
-            Address1 = Utils.RandomString(20);
-            City = "Minsk";
-            State = "Ohio";
-            ZipCode = $"{random.Next(10000, 99999)}";
-            Country = "United States";
-            MobilePhone = $"{random.Next(10000000, 99999999)}";
-            AddressAlias = Utils.RandomString();
-        }
-
+      
         public bool TitleMr { get; set; } = false;
         public bool TitleMrs { get; set; } = false;
         public string FirstNamePersonal { get; set; }

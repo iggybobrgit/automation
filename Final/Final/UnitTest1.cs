@@ -14,15 +14,33 @@ namespace Final
     [AllureNUnit]
     [TestFixture]
 
-    public class Tests : BaseOptions
+    public class Tests 
     {
-
-
+        
         [OneTimeSetUp]
         public void Setup()
         {
             BaseOptions.BrowserSetup(ConfigurationManager.AppSettings["env"]);
         }
+
+        private User _user = new User()
+        {
+            FirstNamePersonal = Utils.RandomString(),
+            LastNamePersonal = Utils.RandomString(),
+            Password = Utils.RandomString(),
+            DayDOB = "5",
+            MonthDOB = DateOfBirthMonth.February,
+            YearDOB = "1994",
+            FirstNameAddress = Utils.RandomString(),
+            LastNameAddress = Utils.RandomString(),
+            Address1 = Utils.RandomString(20),
+            City = "Minsk",
+            State = "Ohio",
+            ZipCode = "21522",
+            Country = "United States",
+            MobilePhone = "55555555",
+            AddressAlias = Utils.RandomString(),
+        };
 
         [AllureSubSuite("NewUser")]
         [AllureSeverity((SeverityLevel)1)]
@@ -31,20 +49,21 @@ namespace Final
         [Test]
         public void CreateUserAndLogin()
         {
-            var user = new User();
+            _user.Email = $"{Utils.RandomString()}@{Utils.RandomString(16)}.com";
+
             var homePage = new HomePage(_driver);
-            homePage.CreateNewAccount(user.Email);
+            homePage.CreateNewAccount(_user.Email);
 
             var registerNewMember = new AddAccPage(_driver);
             Assert.IsTrue(registerNewMember.IsLoaded());
-            registerNewMember.AddNewMember(user);
+            registerNewMember.AddNewMember(_user);
 
             var myAccount = new MyAccPage(_driver);
-            Assert.AreEqual($"{user.FirstNamePersonal} {user.LastNamePersonal}", myAccount.userInfo.Text);
+            Assert.AreEqual($"{_user.FirstNamePersonal} {_user.LastNamePersonal}", myAccount.userInfo.Text);
             myAccount.logoutButton.Click();
 
-            homePage.LogIn(user.Email.ToString(), user.Password.ToString());
-            Assert.AreEqual($"{user.FirstNamePersonal} {user.LastNamePersonal}", myAccount.userInfo.Text);
+            homePage.LogIn(_user.Email.ToString(), _user.Password.ToString());
+            Assert.AreEqual($"{_user.FirstNamePersonal} {_user.LastNamePersonal}", myAccount.userInfo.Text);
             homePage.LogOut();
         }
 
@@ -55,14 +74,14 @@ namespace Final
         [Test]
         public void AddToAutoCreatedWishlist()
         {
-            var user = new User();
+            _user.Email = $"{Utils.RandomString()}@{Utils.RandomString(16)}.com";
 
             var homePage = new HomePage(_driver);
-            homePage.CreateNewAccount(user.Email);
+            homePage.CreateNewAccount(_user.Email);
 
             var registerNewMember = new AddAccPage(_driver);
             Assert.IsTrue(registerNewMember.IsLoaded());
-            registerNewMember.AddNewMember(user);
+            registerNewMember.AddNewMember(_user);
 
             var myAccount = new MyAccPage(_driver);
             myAccount.NavigateToWishlistPage();
@@ -86,14 +105,14 @@ namespace Final
 
         public void AddToExistingWishlist()
         {
-            var user = new User() { };
+            _user.Email = $"{Utils.RandomString()}@{Utils.RandomString(16)}.com";
 
             var homePage = new HomePage(_driver);
-            homePage.CreateNewAccount(user.Email);
+            homePage.CreateNewAccount(_user.Email);
 
             var registerNewMember = new AddAccPage(_driver);
             Assert.IsTrue(registerNewMember.IsLoaded());
-            registerNewMember.AddNewMember(user);
+            registerNewMember.AddNewMember(_user);
 
             var myAccount = new MyAccPage(_driver);
             myAccount.NavigateToWishlistPage();
@@ -119,15 +138,16 @@ namespace Final
 
         public void AddToCart()
         {
-            var products = new List<string>();
-            var user = new User() { };
+            _user.Email = $"{Utils.RandomString()}@{Utils.RandomString(16)}.com";
 
+            var products = new List<string>();
+            
             var homePage = new HomePage(_driver);
-            homePage.CreateNewAccount(user.Email);
+            homePage.CreateNewAccount(_user.Email);
 
             var registerNewMember = new AddAccPage(_driver);
             registerNewMember.IsLoaded();
-            registerNewMember.AddNewMember(user);
+            registerNewMember.AddNewMember(_user);
 
             var categoryPage = new CategoryPage(_driver);
             products.Add(categoryPage.AddRandomProductToCart(Categories.Women));
@@ -148,13 +168,13 @@ namespace Final
         [OneTimeTearDown]
         public void TearDown()
         {
-            BrowserExit();
+            BaseOptions.BrowserExit();
         }
 
         [TearDown]
         public void FailedTestAttach()
         {
-            ScreenshotFail();
+            BaseOptions.ScreenshotFail();
 
         }
     }
